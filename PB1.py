@@ -7,31 +7,33 @@
 # 3. Define una función mostrar_resultados(diccionario) que recorra todos los alumnos e imprima su nombre y si ha aprobado 
 # (promedio ≥ 5) o suspendido.
 
-def agregar_alumno(nombre, notas):
-    alumno_notas["nombre${n}"] = "${nombre}"
-    alumno_notas["notas${n}"] = "${notas}"
-    n += 1
-            
-def promedio (notas):
-    promedio = 0
+def agregar_alumno(nombre, notas, n):
+    alumno_notas[f"nombre{n}"] = nombre
+    alumno_notas[f"notas{n}"] = notas
+
+def promedio(notas):
+    suma = 0
     for j in range(len(notas)):
         suma = suma + notas[j]
-    promedio = suma % len(notas)
-    return promedio
+    return suma / len(notas)
 
-def mostrar_resultados():
-    for i in range((len(alumno_notas)%2)):
-        nota_promedio = promedio(alumno_notas["notas${i}"])
-        print(f"{alumno_notas['nombre${i}']} tiene de promedio {promedio}")
-
-
+def mostrar_resultados(total):
+    for i in range(1, total + 1):
+        nota_promedio = promedio(alumno_notas[f"notas{i}"])
+        nombre = alumno_notas[f"nombre{i}"]
+        if nota_promedio >= 5:
+            print(f"{nombre} - Promedio: {nota_promedio:.1f} → Aprobado ✓")
+        else:
+            print(f"{nombre} - Promedio: {nota_promedio:.1f} → Suspendido ✗")
 
 n = 1
 alumno_notas = {}
-Ana_notas = [4,8,6,9,4,7,5,8]
-Luis_notas = [5,8,6,9,4,1,7,8]
-Marta_notas = [3,8,6,7,4,9,5,8]
-agregar_alumno("Ana", Ana_notas)
-agregar_alumno("Luis", Luis_notas)
-agregar_alumno("Marta", Marta_notas)
-mostrar_resultados()
+Ana_notas = [4, 8, 6, 9, 4, 7, 5, 8]
+Luis_notas = [5, 8, 6, 9, 4, 1, 7, 8]
+Marta_notas = [3, 8, 6, 7, 4, 9, 5, 8]
+agregar_alumno("Ana", Ana_notas, n)
+n += 1
+agregar_alumno("Luis", Luis_notas, n)
+n += 1
+agregar_alumno("Marta", Marta_notas, n)
+mostrar_resultados(3)
