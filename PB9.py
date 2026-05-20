@@ -16,7 +16,7 @@ def crear_tulpa(diccionario):
     lista = []
     for clave in diccionario:
         if diccionario[clave] >= 2:
-            lista.append(f"{clave} se repite {diccionario[clave]}")
+            lista.append(f"{clave}: {diccionario[clave]}")
     tupla = (lista)
     return tupla
 
